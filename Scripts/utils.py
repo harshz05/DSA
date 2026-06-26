@@ -1,3 +1,4 @@
+from config import ROOT_DIR
 from pathlib import Path
 import subprocess
 
@@ -12,10 +13,11 @@ def create_problem_file(path: Path, content: str):
 
 def run_git_command(command):
     return subprocess.run(
-        command,
-        capture_output=True,
-        text=True,
-        shell=True
+     command,
+     cwd=ROOT_DIR,
+     capture_output=True,
+     text=True,
+     shell=True
     )
 
 

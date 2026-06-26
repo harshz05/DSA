@@ -1,9 +1,13 @@
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent
 
-PROBLEMS_DIR = REPO_ROOT / "Problems"
+PROBLEMS_DIR = ROOT_DIR / "Problems"
 
-TEMPLATES_DIR = REPO_ROOT / "Templates"
+NOTES_DIR = ROOT_DIR / "Notes"
 
-NOTES_DIR = REPO_ROOT / "Notes"
+TEMPLATES_DIR = ROOT_DIR / "Templates"
+
+RESOURCES_DIR = ROOT_DIR / "Resources"
+
+README_PATH = ROOT_DIR / "README.md"
