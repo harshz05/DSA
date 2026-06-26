@@ -1,46 +1,20 @@
-from pathlib import Path
+from config import PROBLEMS_DIR
+from templates import generate_cpp_template
+from utils import create_problem_file
 
-problem_number = int(input("Problem Number : "))
-problem_name = input("Problem Name   : ").strip()
 
-filename = f"{problem_number:04d} - {problem_name}.cpp"
+def main():
+    number = int(input("Problem Number : "))
+    name = input("Problem Name   : ").strip()
 
-repo_root = Path(__file__).resolve().parent.parent
-problems_folder = repo_root / "Problems"
+    filename = f"{number:04d} - {name}.cpp"
 
-problems_folder.mkdir(exist_ok=True)
+    content = generate_cpp_template(number, name)
 
-file_path = problems_folder / filename
+    create_problem_file(PROBLEMS_DIR / filename, content)
 
-if file_path.exists():
-    print("\n❌ This problem already exists.")
-    exit()
+    print(f"\n✅ Created:\n{PROBLEMS_DIR / filename}")
 
-template = f"""/*
-=========================================
-LeetCode {problem_number} - {problem_name}
-=========================================
 
-Difficulty :
-
-Pattern    :
-
-Time        :
-
-Space       :
-
-Date Solved :
-
-=========================================
-*/
-
-class Solution {{
-public:
-
-}};
-"""
-
-with open(file_path, "w", encoding="utf-8") as f:
-    f.write(template)
-
-print(f"\n✅ Created:\n{file_path}")
+if __name__ == "__main__":
+    main()
