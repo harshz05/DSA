@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 
 
 def create_problem_file(path: Path, content: str):
@@ -7,8 +8,6 @@ def create_problem_file(path: Path, content: str):
         raise FileExistsError("Problem already exists.")
 
     path.write_text(content, encoding="utf-8")
-
-    import subprocess
 
 
 def run_git_command(command):
