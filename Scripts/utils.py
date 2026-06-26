@@ -11,11 +11,31 @@ def create_problem_file(path: Path, content: str):
 
 
 def run_git_command(command):
-    result = subprocess.run(
+    return subprocess.run(
         command,
         capture_output=True,
         text=True,
         shell=True
     )
 
-    return result
+
+def is_git_repository():
+    result = run_git_command("git rev-parse --is-inside-work-tree")
+    return result.returncode == 0
+
+
+def get_git_status():
+    result = run_git_command("git status --porcelain")
+    return result.stdout.strip()
+
+
+def git_add():
+    return run_git_command("git add .")
+
+
+def git_commit(message):
+    return run_git_command(f'git commit -m "{message}"')
+
+
+def git_push():
+    return run_git_command("git push")
